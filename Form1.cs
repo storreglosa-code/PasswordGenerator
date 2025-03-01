@@ -2,11 +2,11 @@ namespace PasswordGenerator
 {
     public partial class Form1 : Form
     {
-        static string lowerCaseList = "abcdefghijklmnopqrstuvwxyz";
-        static string upperCaseList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        static string numberList = "0123456789";
-        static string symbolList = "!#$%&/()[]{}¿¡?@";
-        string List = null;
+        static string _lowerCaseList = "abcdefghijklmnopqrstuvwxyz";
+        static string _upperCaseList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        static string _numberList = "0123456789";
+        static string _symbolList = "!#$%&/()[]{}¿¡?@";
+        string _characterList = string.Empty;
         public Form1()
         {
             InitializeComponent();
@@ -14,47 +14,53 @@ namespace PasswordGenerator
 
         private void BuildCharList ()
         {
-            List = string.Empty;
+            _characterList = string.Empty;
             if (chkLowerCase.Checked)
             {
-                List += lowerCaseList;
+                _characterList += _lowerCaseList;
             }
 
             if (chkUpperCase.Checked)
             {
-                List += upperCaseList;
+                _characterList += _upperCaseList;
             }
 
             if (chkSymbols.Checked)
             {
-                List += symbolList;
+                _characterList += _symbolList;
             }
 
             if (chkNumbers.Checked)
             {
-                List += numberList;
+                _characterList += _numberList;
             }
 
             if (!chkLowerCase.Checked && !chkUpperCase.Checked && !chkSymbols.Checked && !chkNumbers.Checked)
-            List = string.Concat(symbolList, numberList, upperCaseList, lowerCaseList);
+                _characterList = string.Concat(_symbolList, _numberList, _upperCaseList, _lowerCaseList);
 
         }
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            BuildCharList();
-            string? generatedPassword = null;
-            Random random = new Random();
-            int index= 0;
-            char newCharacter;
-            for (int i = 0; i < numCharacters.Value; i++) 
+            try
             {
-                index = random.Next(0, List.Length);
-                newCharacter = List[index];
-                generatedPassword += newCharacter;
-               
-            }
+                BuildCharList();
+                string generatedPassword = string.Empty;
+                Random random = new Random();
+                int index = 0;
+                char newCharacter;
+                for (int i = 0; i < numCharacters.Value; i++)
+                {
+                    index = random.Next(0, _characterList.Length);
+                    newCharacter = _characterList[index];
+                    generatedPassword += newCharacter;
+                }
 
-            txtGeneratedPwd.Text = generatedPassword;
+                txtGeneratedPwd.Text = generatedPassword;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
     }
