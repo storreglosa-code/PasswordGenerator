@@ -34,10 +34,11 @@
             chkNumbers = new CheckBox();
             chkSymbols = new CheckBox();
             lblCharacters = new Label();
-            numericUpDown1 = new NumericUpDown();
+            numCharacters = new NumericUpDown();
             btnGenerate = new Button();
-            textBox1 = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            txtGeneratedPwd = new TextBox();
+            label1 = new Label();
+            ((System.ComponentModel.ISupportInitialize)numCharacters).BeginInit();
             SuspendLayout();
             // 
             // lblPwG
@@ -104,13 +105,15 @@
             lblCharacters.TabIndex = 5;
             lblCharacters.Text = "Number of Characters:";
             // 
-            // numericUpDown1
+            // numCharacters
             // 
-            numericUpDown1.Font = new Font("Segoe UI", 20F);
-            numericUpDown1.Location = new Point(393, 131);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(70, 43);
-            numericUpDown1.TabIndex = 6;
+            numCharacters.Font = new Font("Segoe UI", 20F);
+            numCharacters.Location = new Point(393, 131);
+            numCharacters.Minimum = new decimal(new int[] { 6, 0, 0, 0 });
+            numCharacters.Name = "numCharacters";
+            numCharacters.Size = new Size(70, 43);
+            numCharacters.TabIndex = 6;
+            numCharacters.Value = new decimal(new int[] { 6, 0, 0, 0 });
             // 
             // btnGenerate
             // 
@@ -121,24 +124,36 @@
             btnGenerate.TabIndex = 7;
             btnGenerate.Text = "GENERATE";
             btnGenerate.UseVisualStyleBackColor = true;
+            btnGenerate.Click += btnGenerate_Click;
             // 
-            // textBox1
+            // txtGeneratedPwd
             // 
-            textBox1.Font = new Font("Segoe UI", 20F);
-            textBox1.Location = new Point(72, 429);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(446, 43);
-            textBox1.TabIndex = 8;
+            txtGeneratedPwd.Font = new Font("Segoe UI", 20F);
+            txtGeneratedPwd.Location = new Point(68, 452);
+            txtGeneratedPwd.Name = "txtGeneratedPwd";
+            txtGeneratedPwd.Size = new Size(446, 43);
+            txtGeneratedPwd.TabIndex = 8;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 20F);
+            label1.Location = new Point(194, 412);
+            label1.Name = "label1";
+            label1.Size = new Size(196, 37);
+            label1.TabIndex = 9;
+            label1.Text = "Your password:";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientActiveCaption;
-            ClientSize = new Size(591, 507);
-            Controls.Add(textBox1);
+            ClientSize = new Size(591, 537);
+            Controls.Add(label1);
+            Controls.Add(txtGeneratedPwd);
             Controls.Add(btnGenerate);
-            Controls.Add(numericUpDown1);
+            Controls.Add(numCharacters);
             Controls.Add(lblCharacters);
             Controls.Add(chkNumbers);
             Controls.Add(chkSymbols);
@@ -147,7 +162,7 @@
             Controls.Add(lblPwG);
             Name = "Form1";
             Text = "Password Generator";
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numCharacters).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -160,8 +175,9 @@
         private CheckBox chkNumbers;
         private CheckBox chkSymbols;
         private Label lblCharacters;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown numCharacters;
         private Button btnGenerate;
-        private TextBox textBox1;
+        private TextBox txtGeneratedPwd;
+        private Label label1;
     }
 }
